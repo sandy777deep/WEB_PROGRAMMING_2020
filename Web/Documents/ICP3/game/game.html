@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>ICP_Task1</title>
+
+    <style>
+
+        .mainBtns {
+
+            margin: auto;
+
+            width: 450px;
+
+            height: 100px;
+
+        }
+
+
+
+        .msg {
+
+
+
+            text-align: center;
+
+            color: black;
+
+        }
+
+
+
+        .choice {
+
+
+
+            margin-left: 15px;
+
+
+
+        }
+
+
+
+        .choice:hover {
+
+
+
+            background-color: black;
+
+        }
+
+
+
+        .score-board {
+
+            text-align: center;
+
+            margin: auto;
+
+            box-sizing: border-box;
+
+            border: 5px solid black;
+
+            border-radius: 25px;
+
+            padding: 30px 25px 25px 25px;
+
+            width: 220px;
+
+            height: 130px;
+
+            position: relative;
+
+
+
+        }
+
+
+
+        .welcMSG {
+
+
+
+            margin: auto;
+
+            text-align: center;
+
+        }
+
+
+
+        .rpsBody {
+
+
+
+            background-color: floralwhite;
+
+        }
+
+
+
+        .badge {
+
+            background-color: white;
+
+            color: black;
+
+            font-size: 15px;
+
+
+
+
+
+        }
+
+
+
+        #usr-label {
+
+
+
+            position: absolute;
+
+            top: 50px;
+
+            left: -15px;
+
+        }
+
+
+
+
+
+        #comp-label {
+
+            position: absolute;
+
+            top: 50px;
+
+            right: -15px;
+
+        }
+
+
+
+
+
+    </style>
+
+</head>
+
+<body class="rpsBody">
+
+<div class="welcMSG">
+
+    <H1 style="color: black">GAME ON</H1>
+
+</div>
+
+<div class="score-board">
+
+
+
+    <div id="usr-label" class="badge">User <br> Score</div>
+
+    <div id="comp-label" class="badge">Computer <br> Score</div>
+
+    <span id="usrScore" style="font-size: 40px;color: black">0</span>
+
+    <span style="font-size: 30px;color: black"> vs </span>
+
+    <span id="compScore" style="font-size: 40px;color: black">0</span>
+
+
+
+</div>
+
+<br><br>
+
+<div>
+
+    <h1 id="winMsg" class="msg"></h1>
+
+
+
+</div>
+
+<div class="mainBtns">
+
+    <button id="Rock" class="choice" onclick="rockSelected()"><img src="SampleImages/Rock.jpg"
+
+                                                                   style="width: 100px;height:100px"/></button>
+
+    <button id="Paper" class="choice" onclick="paperSelected()"><img src="SampleImages/Paper.jpg"
+
+                                                                     style="width: 100px;height:100px"/></button>
+
+    <button id="Scissors" class="choice" onclick="scissorsSelected()"><img src="SampleImages/Scissors.jpg"
+
+                                                                           style="width: 100px;height:100px"/></button>
+
+</div>
+
+<div>
+
+
+
+    <h3 class="msg">Play the Game (Select One from above)</h3>
+
+</div>
+
+
+
+<script>
+
+
+
+    const userScoreSpan = document.getElementById("usrScore");
+
+    const compScoreSpan = document.getElementById("compScore");
+
+    var userScore = 0;
+
+    var compScore = 0;
+
+    const rock_btn = document.getElementById("rock");
+
+    const paper_btn = document.getElementById("paper");
+
+    const scissors_btn = document.getElementById("scissors");
+
+    const msg = document.getElementById("winMsg");
+
+
+
+    function compSelected() {
+
+        const choiceArray = ["r", "p", "s"];
+
+        const randomNumber = Math.floor(Math.random() * 3);
+
+        return choiceArray[randomNumber];
+
+    }
+
+
+
+    function convertToString(letter) {
+
+
+
+        if (letter == "r") {
+
+            return "Rock";
+
+        }
+
+        if (letter == "p") {
+
+            return "Paper";
+
+        }
+
+        if (letter == "s") {
+
+            return "Scissors";
+
+        }
+
+
+
+    }
+
+
+
+    function scoreDisplay(usrChoice) {
+
+        const compChoice = compSelected();
+
+        console.log(usrChoice + compChoice);
+        switch (usrChoice + compChoice) {
+
+
+
+            case "rs":
+
+                msg.innerHTML = `${convertToString(usrChoice)} beats ${convertToString(compChoice)} - User WIN `;
+
+                userScore++;
+
+                userScoreSpan.innerHTML = userScore;
+
+                break;
+
+            case "pr":
+
+                msg.innerHTML = `${convertToString(usrChoice)} beats ${convertToString(compChoice)} - User WIN `;
+
+                userScore++;
+
+                userScoreSpan.innerHTML = userScore;
+
+                break;
+
+            case "sp":
+
+                msg.innerHTML = `${convertToString(usrChoice)} beat ${convertToString(compChoice)} - User WIN`;
+
+                userScore++;
+
+                userScoreSpan.innerHTML = userScore;
+
+                break;
+
+            case "rp":
+
+                msg.innerHTML = convertToString(compChoice) + " " + "beat" + " " + convertToString(usrChoice) + " " + "- Comp WIN";
+
+                compScore++;
+
+                compScoreSpan.innerHTML = compScore;
+
+                break;
+
+            case "ps":
+
+                msg.innerHTML = convertToString(compChoice) + " " + "beat" + " " + convertToString(usrChoice) + " " + "- Comp WIN";
+
+                compScore++;
+
+                compScoreSpan.innerHTML = compScore;
+
+                break;
+
+            case "sr":
+
+                msg.innerHTML = convertToString(compChoice) + " " + "beat" + " " + convertToString(usrChoice) + " " + "- Comp WIN";
+
+                compScore++;
+
+                compScoreSpan.innerHTML = compScore;
+
+                break;
+
+            case "rr":
+
+            case"ss":
+
+            case "pp":
+
+                msg.innerHTML = "DRAW";
+
+                break;
+
+        }
+
+
+
+    }
+
+
+
+    function rockSelected() {
+
+
+
+        scoreDisplay("r");
+
+
+
+    }
+
+
+
+    function paperSelected() {
+
+        scoreDisplay("p");
+
+    }
+
+
+
+    function scissorsSelected() {
+
+        scoreDisplay("s");
+
+    }
+
+</script>
+
+</body>
+
+</html>
